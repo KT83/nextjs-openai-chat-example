@@ -3,9 +3,16 @@
 import { ChatForm } from "@/components/chat-form";
 import { ChatMessages } from "@/components/chat-messages";
 import { MessageArea } from "@/components/message-area";
-import { Button } from "@/components/ui/button";
 import { useChat } from "@ai-sdk/react";
-
+import { Suspense } from "react";
+import dynamic from "next/dynamic";
+const EventListenerTest = dynamic(
+  () =>
+    import("@/components/event-listener-test").then(
+      (mod) => mod.EventListenerTest
+    ),
+  { ssr: false }
+);
 export default function Home() {
   const { messages, input, handleInputChange, handleSubmit, status } = useChat({
     api: "/api/chat",
@@ -19,7 +26,9 @@ export default function Home() {
   prose max-w-none prose-sm prose-p:my-0
 `}
     >
-      <Button onClick={() => console.log("clicked")}>Push</Button>
+      <Suspense>
+        <EventListenerTest />
+      </Suspense>
       {messages.length === 0 && (
         <div className="mb-2 flex flex-col items-center">
           <h2 className="text-3xl font-bold">How Can I help you??</h2>
