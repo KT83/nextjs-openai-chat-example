@@ -2,10 +2,7 @@
 
 import React, { FC, KeyboardEvent, PropsWithChildren, useRef } from "react";
 import { AutosizeTextarea } from "@/components/autosize-textarea";
-import {
-  ChatActionIconButton,
-  ChatActions,
-} from "@/components/chat-actions";
+import { ChatActionIconButton, ChatActions } from "@/components/chat-actions";
 import { Button } from "@/components/ui/button";
 import { LucideArrowUp, LucidePlus } from "lucide-react";
 import { Card } from "@/components/ui/card";
@@ -38,6 +35,7 @@ const ChatForm: FC<PropsWithChildren<ChatFormProps>> = (props) => {
   const handleKeyDown = React.useCallback(
     (e: KeyboardEvent<HTMLTextAreaElement>) => {
       if (e.metaKey && e.key === "Enter") {
+        console.log("handle key down enter");
         submitButtonRef.current?.click();
       }
     },

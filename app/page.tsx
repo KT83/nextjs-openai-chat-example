@@ -6,9 +6,9 @@ import { MessageArea } from "@/components/message-area";
 import { useChat } from "@ai-sdk/react";
 
 export default function Home() {
-  const { messages, input, handleInputChange, handleSubmit, status } = useChat(
-    {}
-  );
+  const { messages, input, handleInputChange, handleSubmit, status } = useChat({
+    api: "/api/chat",
+  });
 
   return (
     <main
@@ -20,7 +20,7 @@ export default function Home() {
     >
       {messages.length === 0 && (
         <div className="mb-2 flex flex-col items-center">
-          <h2 className="text-3xl font-bold">How Can I help you?</h2>
+          <h2 className="text-3xl font-bold">How Can I help you??</h2>
         </div>
       )}
       {messages.length > 0 && (
@@ -31,7 +31,11 @@ export default function Home() {
       <ChatForm
         inputValue={input}
         onInputChange={handleInputChange}
-        onSubmit={handleSubmit}
+        onSubmit={(e) => {
+          e.preventDefault();
+          console.log("submit");
+          handleSubmit(e);
+        }}
       />
     </main>
   );
