@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC, KeyboardEvent, PropsWithChildren, useRef } from "react";
+import React, { KeyboardEvent, PropsWithChildren, useRef } from "react";
 import { AutosizeTextarea } from "@/components/autosize-textarea";
 import { ChatActionIconButton, ChatActions } from "@/components/chat-actions";
 import { Button } from "@/components/ui/button";
@@ -27,7 +27,7 @@ export interface ChatFormProps {
   submitButtonLabel?: string;
 }
 
-const ChatForm: FC<PropsWithChildren<ChatFormProps>> = (props) => {
+function ChatForm(props: PropsWithChildren<ChatFormProps>) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const submitButtonRef = useRef<HTMLButtonElement>(null);
@@ -94,6 +94,6 @@ const ChatForm: FC<PropsWithChildren<ChatFormProps>> = (props) => {
       </form>
     </Card>
   );
-};
+}
 
 export { ChatForm };

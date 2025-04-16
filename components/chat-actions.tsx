@@ -1,6 +1,7 @@
 import React, {
   ComponentProps,
   FC,
+  forwardRef,
   HTMLAttributes,
   PropsWithChildren,
 } from "react";
@@ -32,15 +33,20 @@ const ChatActionToggle = ({ ...props }: ComponentProps<typeof Toggle>) => {
   );
 };
 
-const ChatActions: FC<PropsWithChildren<HTMLAttributes<HTMLDivElement>>> = ({
-  className,
-  ...props
-}) => {
-  return (
-    <div className={cn("flex flex-wrap gap-2 items-center", className)}>
-      {props.children}
-    </div>
+const ChatActions: FC<PropsWithChildren<HTMLAttributes<HTMLDivElement>>> =
+  forwardRef<HTMLDivElement, PropsWithChildren<HTMLAttributes<HTMLDivElement>>>(
+    ({ className, ...props }, ref) => {
+      return (
+        <div
+          ref={ref}
+          className={cn("flex flex-wrap gap-2 items-center", className)}
+        >
+          {props.children}
+        </div>
+      );
+    }
   );
-};
+
+ChatActions.displayName = "ChatActions";
 
 export { ChatActions, ChatActionIconButton, ChatActionToggle };
