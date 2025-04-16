@@ -6,8 +6,9 @@ import { MessageArea } from "@/components/message-area";
 import { useChat } from "@ai-sdk/react";
 
 export default function Home() {
-  const { messages, input, handleInputChange, handleSubmit, status } =
-    useChat();
+  const { messages, input, handleInputChange, handleSubmit, status } = useChat(
+    {}
+  );
 
   return (
     <main
